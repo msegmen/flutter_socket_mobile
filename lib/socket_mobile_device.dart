@@ -1,6 +1,19 @@
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'socket_mobile_device.g.dart';
+
+@JsonSerializable()
 class SocketMobileDevice extends Equatable {
+  const SocketMobileDevice(
+    this.name,
+    this.uuid,
+    this.guid,
+  );
+
+  factory SocketMobileDevice.fromJson(Map<String, dynamic> json) =>
+      _$SocketMobileDeviceFromJson(json);
+
   /// friendly name
   final String name;
 
@@ -9,20 +22,6 @@ class SocketMobileDevice extends Equatable {
 
   /// session ID
   final String guid;
-
-  const SocketMobileDevice(
-    this.name,
-    this.uuid,
-    this.guid,
-  );
-
-  factory SocketMobileDevice.fromJson(Map json) {
-    return SocketMobileDevice(
-      json['name'],
-      json['uuid'],
-      json['guid'],
-    );
-  }
 
   @override
   List<Object> get props => [uuid];
